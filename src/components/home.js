@@ -7,6 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
+import SimpleCard from "../partials/card";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         marginTop: '5%',
         marginLeft: '17%',
+        marginRight: '2%',
     },
     toolbar: theme.mixins.toolbar,
     iconButton: {
@@ -26,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     inputSearch: {
         border: '1px solid #e6e6e6',
         boxShadow: 'none',
+    },
+    alignRight: {
+        textAlign: 'right',
     }
 }))
 
@@ -52,6 +57,11 @@ const PurpleButton = withStyles((theme) => ({
 export default function Home(){
   const theme = useTheme();
   const styles = useStyles(theme)
+  const [ cardItems, setCardItems] = useState([
+    {title: "Samsara 1.0",subtitle:"samara.com"},
+    {title: "Samsara 1.0",subtitle:"samara.com"},
+    {title: "Samsara 1.0",subtitle:"samara.com"},
+  ])
   return (
     <div className={styles.root}>
       <ApplicationBar/>
@@ -72,7 +82,7 @@ export default function Home(){
             </Grid>
             <Grid item xs={5}>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={4} className={styles.alignRight}>
                 <WhiteButton 
                 variant="contained"
                 startIcon={<img alt="refresh" src="/icons/refresh.svg" />}
@@ -85,6 +95,13 @@ export default function Home(){
                 >
                     New Project
                 </PurpleButton>
+            </Grid>
+            <Grid item xs={12}>
+                {
+                    cardItems.map((item) => 
+                        <SimpleCard data={item}/>
+                    )
+                }
             </Grid>
         </Grid>
       </main>
